@@ -7,7 +7,8 @@ import {SWRFacade} from "@/components/swr-facade";
 import useSWRFetch from "@/lib/hook/use-swr-fetch";
 import {Button} from "@/components/ui/button";
 import {useUser} from "@/lib/hook/use-user";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 const avatarColors = {
     DK: { bg: "#6f3a8a", text: "#381146" },
@@ -210,10 +211,11 @@ export default function NewGroup() {
     const router = useRouter();
 
     function create() {
+        setSubmitting(true);
         fetch("/api/group/create", {
             method: "POST",
             body: JSON.stringify({
-                name: name,
+                name: name || "Unnamed group",
                 remaining: 10,
                 due: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(),
                 users: [user.sub]
@@ -226,7 +228,7 @@ export default function NewGroup() {
             {/* Header */}
             <div className={"fixed w-full"}>
                 <div style={styles.header} className={"px-[24px]"}>
-                    <ArrowLeft className={"size-5 text-ligr"}/>
+                    <Link href={"/zone"}><ArrowLeft className={"size-5 text-ligr"}/></Link>
                     <span style={styles.headerTitle}>{name || "Unnamed group"}</span>
                     <Save className={"size-5 text-transparent"}/>
                 </div>
@@ -277,7 +279,7 @@ export default function NewGroup() {
                 </div>
             </div>
             <div className={"fixed bottom-8 left-0 w-full px-7"}>
-                <Button variant={"secondary"} onClick={create}>{submitting ? "Please wait..." : "Create & Add"}</Button>
+                <Button variant={"secondary"} size={"bl"} onClick={create}>{submitting ? "Please wait..." : "Create & Add"}</Button>
             </div>
         </div>
     );

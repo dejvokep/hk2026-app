@@ -4,6 +4,7 @@ import {Avatar, AvatarGroup, AvatarImage} from "@/components/ui/avatar";
 import ExclamationMark from "@/components/home/exclamation-mark";
 import {useMemo} from "react";
 import {formatDistanceToNow} from "date-fns";
+import Link from "next/link";
 
 export default function GroupCard({group}: {group: Group}) {
     const widget = useMemo(() => {
@@ -18,7 +19,7 @@ export default function GroupCard({group}: {group: Group}) {
     }, [group]);
 
     return <Container className={"h-[180px] flex flex-col justify-between"}>
-        <div className={"space-y-0.5 relative"}>
+        <Link href={`/zone/group/${group._id}`}><div className={"space-y-0.5 relative"}>
             <h2 className={"text-[24px]"}>{group.name}</h2>
             <div className={"flex gap-1 items-center"}>
                 <AvatarGroup className={"*:data-[slot=avatar]:ring-0"}>
@@ -31,7 +32,7 @@ export default function GroupCard({group}: {group: Group}) {
             <div className={"absolute top-0 right-0"}>
                 {widget}
             </div>
-        </div>
+        </div></Link>
         <div>
             {group.contributed && <p className={"font-medium text-ligr text-[12px]"}>Total contributed</p>}
             <p className={"text-[24px]"}>{group.remaining || group.contributed}€</p>
