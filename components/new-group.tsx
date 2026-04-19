@@ -54,7 +54,7 @@ function ContactCard({ user }: { user: User }) {
     );
 }
 
-function QRIcon() {
+export function QRIcon() {
     return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect x="4" y="4" width="10" height="10" rx="1.5" stroke="rgba(255,255,255,0.2)" strokeWidth="2" fill="none" />
@@ -71,7 +71,7 @@ function QRIcon() {
     );
 }
 
-function PasswordIcon() {
+export function PasswordIcon() {
     return (
         <svg width="38" height="31" viewBox="0 0 38 31" fill="none">
             <circle cx="9" cy="10" r="5" stroke="rgba(255,255,255,0.2)" strokeWidth="2" fill="none" />
@@ -84,7 +84,7 @@ function PasswordIcon() {
     );
 }
 
-const styles = {
+export const styles = {
     screen: {
         background: "#000",
         width: 402,

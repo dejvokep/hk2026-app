@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import {ArrowLeft, Plus, Save, Sparkles} from 'lucide-react';
+import {ArrowLeft, Plus, Save, Sparkles, Star, Stars} from 'lucide-react';
 import { SWRFacade } from '@/components/swr-facade';
 import useSWRFetch from '@/lib/hook/use-swr-fetch';
 import Container from '@/components/container';
@@ -74,11 +74,14 @@ export default function GroupSelectionStage({
                     onClick={() => setSelectedGroupId(group)}
                     className={`flex flex-col justify-between aspect-square cursor-pointer transition-all text-white ${
                       selectedGroupId?._id === group._id
-                        ? 'border-[0.5px] border-white '
-                        : 'bg-[#16151a] border-[#242424] hover:bg-[#1f1e24]'
+                        ? 'border-[0.5px] border-white/20 '
+                        : 'bg-[#16151a] border-[#242424] hover:bg-[#1f1e24] text-white/50'
                     }`}
                   >
+                      <div>
+                          {group._id === SUGGESTED_GROUP_ID && <p className={"text-xs flex items-center gap-1 text-[#0097FA]"}><Stars className={"size-3"}/>SUGGESTED</p>}
                           <h2 className={"text-[24px]"}>{group.name}</h2>
+                      </div>
                           <div className={"flex gap-1 items-center"}>
                               <AvatarGroup className={"*:data-[slot=avatar]:ring-0"}>
                                   {group.users.slice(0, 4).map(user => <Avatar key={user._id} className={"ring-0 size-6"}>

@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^4.18.0",
     "@google/genai": "^1.50.1",
+    "@solana/web3.js": "^1.98.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

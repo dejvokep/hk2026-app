@@ -25,6 +25,7 @@ export default function CompletionStage({ receipt, group }: CompletionStageProps
           vendor: receipt.vendor,
           date: new Date().toISOString(),
           photo: null,
+          paid: false,
           value: receipt.total,
           currency: receipt.currency,
           type: 'ONETIME',
@@ -91,7 +92,7 @@ export default function CompletionStage({ receipt, group }: CompletionStageProps
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                stoke-width="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 style={{ color: '#0da781' }}

@@ -23,6 +23,7 @@ export type IntentBase = {
     group: string,
     name: string,
     vendor: string,
+    paid?: boolean,
     date: string,
     photo: string | null,
     value: number

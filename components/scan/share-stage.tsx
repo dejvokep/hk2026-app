@@ -12,9 +12,9 @@ function SliderThumb() {
   return (
     <svg width="21" height="13.5" viewBox="0 0 21 14" fill="none" style={{ display: 'block' }}>
       <rect x="0" y="0" width="21" height="14" rx="4" fill="#3b82f6" />
-      <line x1="7" y1="4" x2="7" y2="10" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="10.5" y1="4" x2="10.5" y2="10" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="14" y1="4" x2="14" y2="10" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="7" y1="4" x2="7" y2="10" stroke="#fff" stokewidth="1.2" strokeLinecap="round" />
+      <line x1="10.5" y1="4" x2="10.5" y2="10" stroke="#fff" stokewidth="1.2" strokeLinecap="round" />
+      <line x1="14" y1="4" x2="14" y2="10" stroke="#fff" stokewidth="1.2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -249,10 +249,12 @@ function PersonSliderRow({
 export default function ShareStage({
   receipt,
   group,
+    sw,
   onComplete: onCompleteAction,
 }: {
-  receipt: ApiReceipt;
-  group: Group & { users: { _id: string; name: string }[] };
+  receipt: ApiReceipt,
+    sw: () => void,
+    group: Group & { users: { _id: string; name: string }[] };
   onComplete?: () => void;
   onCompleteAction?: () => void;
 }) {
@@ -383,6 +385,9 @@ export default function ShareStage({
         </div>
       </div>
 
+        <div className={"mx-[16px]"}>
+            <Button size={"bl"} onClick={sw}>Switch to split</Button>
+        </div>
       <div
         style={{
           display: 'flex',

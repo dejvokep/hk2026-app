@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function GroupList() {
     return <div className={"pt-[100px] space-y-2.5"}>
-        <p className={"text-ligr font-bold pl-3"}>My groups</p>
+        <p className={"text-ligr text-sm font-bold pl-3"}>My groups</p>
         <div className={"space-y-5"}>
             <SWRFacade res={useSWRFetch<Group[]>("/group/list")} success={groups => groups.filter(g => g.remaining || g.contributed).map(g => <GroupCard key={g._id} group={g}/>)}/>
             <Container className={"h-[180px] grid place-items-center bg-[rgba(22,21,26,0.5)] border-[1px] border-[rgba(22,21,26,1)] border-dashed"}>
