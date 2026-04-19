@@ -14,7 +14,7 @@ export default function GroupCard({group}: {group: Group}) {
 
         return <div className={"text-[12px] text-right text-ligr"}>
             <p className={"font-bold"}>Last contributed</p>
-            <p>{formatDistanceToNow(group.last!)}</p>
+            <p>{formatDistanceToNow(group.last!)} ago</p>
         </div>
     }, [group]);
 
