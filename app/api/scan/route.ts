@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {DEFAULT_IN_USE, processReceipt} from "@/lib/api/receipt-processor";
+import {processReceipt} from "@/lib/api/receipt-processor";
+import {DEFAULT_IN_USE} from "@/lib/types";
 
 export async function POST(request: NextRequest) {
     const data = await request.formData();

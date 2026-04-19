@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 import {ArrowLeft, Save, Sparkles, X} from 'lucide-react';
 import { ApiReceipt } from '@/app/zone/scan/page';
 import Link from "next/link";
-import {Group} from "@/lib/types";
-import {DEFAULT_IN_USE} from "@/lib/api/receipt-processor";
+import {DEFAULT_IN_USE, Group} from "@/lib/types";
 
 function Divider() {
   return <div style={{ height: 1, background: '#e0e0e0', flexShrink: 0 }} />;

@@ -1,3 +1,5 @@
+export const DEFAULT_IN_USE = false;
+
 export type User = {
     _id: string,
     name: string,
