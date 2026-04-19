@@ -5,7 +5,7 @@ import {usePathname} from "next/navigation";
 
 export default function Menu() {
     const pathname = usePathname();
-    if (["/zone/group/new", "/"].includes(pathname)) return null;
+    if (["/zone/group/new", "/", "/zone/scan"].includes(pathname)) return null;
 
     return <div className={"fixed bottom-0 left-0 w-full px-[35px] pb-[35px]"}>
         <Container className={"flex justify-between items-center h-[60px]"}>

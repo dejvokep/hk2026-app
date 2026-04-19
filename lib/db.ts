@@ -1,6 +1,6 @@
 import {MongoClient, WithId} from "mongodb";
 
-const client = new MongoClient(process.env.MONGO_URL || "");
+const client = new MongoClient(process.env.MONGO_URL || "", {maxStalenessSeconds: 30});
 export const db = client.connect();
 
 export const remapId = (doc: WithId<object>) => {

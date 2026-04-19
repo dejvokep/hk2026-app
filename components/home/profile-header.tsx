@@ -7,7 +7,7 @@ import {useUser} from "@/lib/hook/use-user";
 export default function ProfileHeader() {
     const user = useUser();
 
-    return <div className={"fixed top-0 left-0 p-4.5 w-full"}>
+    return <div className={"fixed top-0 left-0 p-4.5 w-full z-20"}>
         <Container className={"flex justify-between items-center border-[0.1px] border-gray-700"}>
             <div className={"flex gap-5"}>
                 <ProfileIcon id={user._id} size={"lg"}/>
