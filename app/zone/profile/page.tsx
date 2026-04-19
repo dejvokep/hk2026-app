@@ -7,6 +7,8 @@ import {Group} from "@/lib/types";
 import {ArrowLeft} from "lucide-react";
 import Link from "next/link";
 import ExclamationMark from "@/components/home/exclamation-mark";
+import {SWRFacade} from "@/components/swr-facade";
+import Expenses, {ExpensesType} from "@/components/expenses";
 
 interface BalanceItem {
     title: string;
@@ -311,10 +313,12 @@ export default function Page() {
 
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setYouOwe(totalOwe);
-        setYouOwed(totalOwed);
+        setYouOwed(0);
         setOweItems(owe);
         setOwedItems(owed);
     }, [groups]);
+
+    const exp = useSWRFetch<ExpensesType>("/expenses");
 
     return (
         <div style={{background: "#000", width: "100%", minHeight: "100vh", color: "#fff", fontFamily: "'Manrope', sans-serif", display: "flex", flexDirection: "column"}}>
@@ -379,6 +383,24 @@ export default function Page() {
                                     Nothing owed to you!
                                 </div>
                             )}
+                        </div>
+
+                        <div style={{display: "flex", flexDirection: "column", gap: 10}}>
+                            <span style={{fontSize: 14, fontWeight: 500, color: "#a4a6b3", letterSpacing: "-0.28px"}}>Expense tracker</span>
+                            <div style={{
+                                width: "100%",
+                                maxWidth: 365,
+                                padding: 20,
+                                background: "rgba(255, 255, 255, 0.05)",
+                                borderRadius: 18,
+                                border: "1px solid rgba(255, 255, 255, 0.1)",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: 20,
+                                overflow: "hidden",
+                            }}>
+                                <SWRFacade res={exp} success={expenses => <Expenses expenses={expenses}/>}/>
+                            </div>
                         </div>
 
                         <div style={{display: "flex", flexDirection: "column", gap: 10}}>
