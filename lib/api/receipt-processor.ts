@@ -10,6 +10,8 @@ const ai = new GoogleGenAI({
 
 // 2. Define your Zod schema (Identical to your original code)
 const receiptSchema = z.object({
+    name: z.string(),
+    expense: z.string(),
     vendor: z.string(),
     currency: z.string(),
     products: z.array(z.object({
@@ -23,6 +25,8 @@ const receiptSchema = z.object({
 const geminiSchema = {
     type: "object",
     properties: {
+        name: { type: "string" },
+        expense: { type: "string" },
         vendor: { type: "string" },
         currency: { type: "string" },
         products: {
@@ -38,7 +42,7 @@ const geminiSchema = {
         },
         total: { type: "number" }
     },
-    required: ["vendor", "currency", "products", "total"]
+    required: ["vendor", "currency", "products", "total", "name", "expense"]
 };
 
 export async function processReceipt() {
@@ -52,7 +56,7 @@ export async function processReceipt() {
             {
                 role: "user",
                 parts: [
-                    { text: "Please read and structure the receipt into the given format. YOU MUST ADHERE TO THE FORMAT! Try to be fast. Convert CZK to EUR (currency set to the euro character) with an exchange rate of 24.3, rounded to two decimal places." },
+                    { text: "Please read and structure the receipt into the given format. According to the content, assign a short descriptive name and also the expense category - one of GAS, LEISURE, BEAUTY, GROCERIES, RENT. YOU MUST ADHERE TO THE FORMAT! Try to be fast. Convert CZK to EUR (currency set to the euro character) with an exchange rate of 24.3, rounded to two decimal places." },
                     { inlineData: { mimeType: "image/jpeg", data: imageBase64 } }
                 ]
             }

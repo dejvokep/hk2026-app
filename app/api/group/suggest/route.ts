@@ -29,6 +29,8 @@ interface SuggestionResult {
 }
 
 interface ApiReceipt {
+    name: string,
+    expense: string,
     vendor: string;
     currency: string;
     products: Array<{ name: string; price: number }>;

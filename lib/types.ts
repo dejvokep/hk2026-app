@@ -16,11 +16,16 @@ export type Group = {
     users: User[]
 }
 
+export enum ExpenseType {
+    GAS = "GAS", GROCERIES = "GROCERIES", BEAUTY = "BEAUTY", LEISURE = "LEISURE", RENT = "RENT"
+}
+
 export type Intent = OnetimeIntent | GoalIntent;
 
 export type IntentBase = {
     _id: string,
     group: string,
+    expense?: ExpenseType,
     name: string,
     vendor: string,
     paid?: boolean,

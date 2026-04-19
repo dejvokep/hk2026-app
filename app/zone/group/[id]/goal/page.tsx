@@ -146,6 +146,7 @@ export default function Page() {
                             type="date"
                             placeholder="0.00"
                             value={new Date().toISOString().split("T")[0]}
+                            readOnly={true}
                             style={{
                                 background: "transparent",
                                 border: "none",

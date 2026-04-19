@@ -216,7 +216,7 @@ export default function NewGroup() {
             method: "POST",
             body: JSON.stringify({
                 name: name || "Unnamed group",
-                remaining: 10,
+                remaining: 0,
                 due: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(),
                 users: [user.sub]
             })

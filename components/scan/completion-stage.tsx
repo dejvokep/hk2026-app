@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ApiReceipt } from '@/app/zone/scan/page';
-import { Group } from '@/lib/types';
+import {ExpenseType, Group} from '@/lib/types';
 import {Button} from "@/components/ui/button";
 
 interface CompletionStageProps {
@@ -21,9 +21,10 @@ export default function CompletionStage({ receipt, group }: CompletionStageProps
         // Create a sample intent from the receipt
         const intent = {
           group: group._id,
-          name: receipt.vendor,
+          name: receipt.name,
           vendor: receipt.vendor,
           date: new Date().toISOString(),
+          expense: receipt.expense,
           photo: null,
           paid: false,
           value: receipt.total,
