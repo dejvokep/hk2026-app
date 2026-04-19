@@ -27,7 +27,7 @@ export default function Page() {
         return <GroupSelectionStage onGroupSelected={setSelectedGroupId}/>
     if (!completed) {
         if (share)
-            return <ShareStage receipt={receipt} group={selectedGroupId} sw={() => setShare(false)} onCompleteAction={complete}/>
+            return <ShareStage receipt={receipt} group={selectedGroupId} sw={() => setShare(false)} onComplete={complete}/>
         return <ReceiptDisplayStage receipt={receipt} group={selectedGroupId} sw={() => setShare(true)} complete={complete}/>
     }
     return <CompletionStage receipt={receipt} group={selectedGroupId} />

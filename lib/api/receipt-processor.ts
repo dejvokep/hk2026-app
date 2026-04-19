@@ -45,9 +45,11 @@ const geminiSchema = {
     required: ["vendor", "currency", "products", "total", "name", "expense"]
 };
 
-export async function processReceipt() {
+export const DEFAULT_IN_USE = false;
+
+export async function processReceipt(base64?: string) {
     // 3. Prepare the image
-    const imageBase64 = fs.readFileSync("req-tmp.jpg").toString("base64");
+    const imageBase64 = base64 || fs.readFileSync("req-tmp.jpg").toString("base64");
 
     // ...existing code...
     const response = await ai.models.generateContent({

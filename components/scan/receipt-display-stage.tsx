@@ -7,6 +7,7 @@ import {ArrowLeft, Save, Sparkles, X} from 'lucide-react';
 import { ApiReceipt } from '@/app/zone/scan/page';
 import Link from "next/link";
 import {Group} from "@/lib/types";
+import {DEFAULT_IN_USE} from "@/lib/api/receipt-processor";
 
 function Divider() {
   return <div style={{ height: 1, background: '#e0e0e0', flexShrink: 0 }} />;
@@ -347,7 +348,7 @@ export default function ReceiptDisplayStage({ receipt, group, sw, complete }: { 
         }}>
           <Sparkles size={20} color="#fff" style={{ flexShrink: 0 }} />
           <span style={{ fontSize: 16, fontWeight: 500, letterSpacing: '-0.32px', color: '#fff', lineHeight: 1.45, flex: 1 }}>
-            You never split alcohol with Marek before. Assign &quot;<strong style={{ fontWeight: 600 }}>Víno červené</strong>&quot; only to Adam?
+            You never split alcohol with Jan before. Assign &quot;<strong style={{ fontWeight: 600 }}>Víno červené</strong>&quot; only to Martin?
           </span>
         </div>
 
@@ -364,7 +365,7 @@ export default function ReceiptDisplayStage({ receipt, group, sw, complete }: { 
         padding: '16px',
       }}>
         {!isSuggestion ? (
-          <Button onClick={handleNext} variant={"secondary"} size={"bl"} className="w-full">Next</Button>
+          <Button onClick={DEFAULT_IN_USE ? handleNext : handleYes} variant={"secondary"} size={"bl"} className="w-full">Next</Button>
         ) : (
           <>
             <Button onClick={handleYes} variant="secondary" size={"bl"} className="flex-1">Yes</Button>
