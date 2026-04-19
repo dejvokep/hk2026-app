@@ -293,7 +293,7 @@ export default function Page() {
                 totalOwe += remaining;
                 owe.push({
                     title: group.name,
-                    amount: `${remaining}€`,
+                    amount: `${remaining.toFixed(2)}€`,
                     badge: {
                         variant: isPastDue ? "past_due" : "due",
                         label: isPastDue ? "Past due" : "Due"
@@ -360,7 +360,7 @@ export default function Page() {
                             {oweItems.length > 0 ? (
                                 <BalanceCard
                                     label="You owe"
-                                    total={`${youOwe}€`}
+                                    total={`${youOwe.toFixed(2)}€`}
                                     items={oweItems}
                                 />
                             ) : (
@@ -375,7 +375,7 @@ export default function Page() {
                             {owedItems.length > 0 ? (
                                 <BalanceCard
                                     label="You&apos;re owed"
-                                    total={`${youOwed}€`}
+                                    total={`${youOwed.toFixed(2)}€`}
                                     items={owedItems}
                                 />
                             ) : (

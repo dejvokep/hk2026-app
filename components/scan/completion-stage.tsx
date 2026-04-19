@@ -9,57 +9,11 @@ import {Button} from "@/components/ui/button";
 interface CompletionStageProps {
   receipt: ApiReceipt;
   group: Group;
+  submitted: boolean;
+  itemCount: number;
 }
 
-export default function CompletionStage({ receipt, group }: CompletionStageProps) {
-  const [submitted, setSubmitted] = useState(false);
-  const [itemCount, setItemCount] = useState(0);
-
-  useEffect(() => {
-    const submitReceipt = async () => {
-      try {
-        // Create a sample intent from the receipt
-        const intent = {
-          group: group._id,
-          name: receipt.name,
-          vendor: receipt.vendor,
-          date: new Date().toISOString(),
-          expense: receipt.expense,
-          photo: null,
-          paid: false,
-          value: receipt.total,
-          currency: receipt.currency,
-          type: 'ONETIME',
-          products: receipt.products,
-          shares: receipt.products.map(() => [group.users[0]?._id || '']),
-        };
-
-        const response = await fetch('/api/intent/create', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(intent),
-        });
-
-        if (response.ok) {
-          setItemCount(receipt.products.length);
-          setSubmitted(true);
-        } else {
-          console.error('Failed to submit receipt:', response.status);
-          setSubmitted(true);
-          setItemCount(receipt.products.length);
-        }
-      } catch (error) {
-        console.error('Error submitting receipt:', error);
-        setSubmitted(true);
-        setItemCount(receipt.products.length);
-      }
-    };
-
-    submitReceipt();
-  }, []);
-
+export default function CompletionStage({ receipt, group, submitted, itemCount }: CompletionStageProps) {
   return (
     <>
       <div

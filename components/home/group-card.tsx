@@ -35,7 +35,7 @@ export default function GroupCard({group}: {group: Group}) {
         </div></Link>
         <div>
             {group.contributed && <p className={"font-medium text-ligr text-[12px]"}>Total contributed</p>}
-            <p className={"text-[24px]"}>{group.remaining || group.contributed}€</p>
+            <p className={"text-[24px]"}>{(group.remaining || group.contributed || 0).toFixed(2)}€</p>
         </div>
     </Container>
 }

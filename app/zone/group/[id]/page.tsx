@@ -21,7 +21,7 @@ export default function Page() {
         <GroupHeader/>
         <div className={"space-y-10 pt-4"}>
             <Container className={"flex justify-between items-center py-4"}>
-                <p>{group.remaining}€</p>
+                <p>{(group.remaining || 0).toFixed(2)}€</p>
                 <Link href={usePathname() + "/pay"}><Button className={"text-ligr gap-2"}>Pay all<ArrowRight className={"size-4"}/></Button></Link>
             </Container>
             <SWRFacade res={useSWRFetch<Intent[]>(`/intent/list?group=${group._id}`)} success={intents => <IntentList intents={intents}/>}/>

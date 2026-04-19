@@ -23,7 +23,7 @@ export default function ProfileHeader() {
                 <ProfileIcon id={user._id} size={"lg"}/>
                 <div className={"space-y-2.5"}>
                     <p className={"leading-4"}>You&apos;re owed 0€</p>
-                    <p className={"leading-4"}>You owe {totalOwed}€</p>
+                    <p className={"leading-4"}>You owe {totalOwed.toFixed(2)}€</p>
                 </div>
             </div>
             <Link href={"/zone/profile"}><Button className={"text-ligr gap-2"}>Details<ArrowRight className={"size-4"}/></Button></Link>

@@ -16,9 +16,55 @@ export default function Page() {
     const [selectedGroupId, setSelectedGroupId] = useState<Group | null>(null);
     const [share, setShare] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [itemCount, setItemCount] = useState(0);
 
     const complete = () => {
         setCompleted(true);
+        if (!receipt || !selectedGroupId) return;
+
+        const submitReceipt = async () => {
+            try {
+                // Create a sample intent from the receipt
+                const intent = {
+                    group: selectedGroupId._id,
+                    name: receipt.name,
+                    vendor: receipt.vendor,
+                    date: new Date().toISOString(),
+                    expense: receipt.expense,
+                    photo: null,
+                    paid: false,
+                    value: receipt.total,
+                    currency: receipt.currency,
+                    type: 'ONETIME',
+                    products: receipt.products,
+                    shares: receipt.products.map(() => [selectedGroupId.users[0]?._id || '']),
+                };
+
+                const response = await fetch('/api/intent/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(intent),
+                });
+
+                if (response.ok) {
+                    setItemCount(receipt.products.length);
+                    setSubmitted(true);
+                } else {
+                    console.error('Failed to submit receipt:', response.status);
+                    setSubmitted(true);
+                    setItemCount(receipt.products.length);
+                }
+            } catch (error) {
+                console.error('Error submitting receipt:', error);
+                setSubmitted(true);
+                setItemCount(receipt.products.length);
+            }
+        };
+
+        submitReceipt();
     }
 
     if (!receipt)
@@ -30,6 +76,6 @@ export default function Page() {
             return <ShareStage receipt={receipt} group={selectedGroupId} sw={() => setShare(false)} onComplete={complete}/>
         return <ReceiptDisplayStage receipt={receipt} group={selectedGroupId} sw={() => setShare(true)} complete={complete}/>
     }
-    return <CompletionStage receipt={receipt} group={selectedGroupId} />
+    return <CompletionStage receipt={receipt} group={selectedGroupId} itemCount={itemCount} submitted={submitted}/>
 
 }
