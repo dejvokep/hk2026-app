@@ -109,7 +109,7 @@ export default function Page() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <span style={{ fontSize: 14, fontWeight: 500, color: "#a4a6b3", letterSpacing: "-0.28px" }}>Total due</span>
                     <span style={{ fontSize: 36, fontWeight: 500, letterSpacing: "-0.72px" }}>
-                        {group.remaining ? `${group.remaining}` : "0"}€
+                        {group.remaining ? `${group.remaining.toFixed(2)}` : "0"}€
                     </span>
                 </div>
             </div>
